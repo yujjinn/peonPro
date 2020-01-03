@@ -1,0 +1,294 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset = "utf-8">
+    <title>상품 검색 페이지</title>
+    <style type = "text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#bbb;}
+.tg td{text-align: center; font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#bbb;color:#594F4F;background-color:#E0FFEB;}
+.tg th{ text-align: center; font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#bbb;color:#493F3F;background-color:#9DE0AD;}
+.tg .tg-yw4l{vertical-align:top}
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}</style>
+
+  </head>
+
+
+  <body>
+
+  <textarea id="textAre" cols="16" rows="1"></textarea>
+  <input type="button" id="execute" value="검색" />
+  <input type="button" value="되돌아가기" onclick="location.href='main.html';"/>
+    <div id=show></div>
+    <div id=show1></div>
+    <div id=show2></div>
+    <div id=show3></div>
+    <div id=show4></div>
+    <div id=show5></div>
+    <div id=show6></div>
+    <div id=show7></div>
+
+  </body>
+
+</html>
+
+  <script>
+$('#execute').click(function(){
+  var textAre = $("#textAre").val();
+ textAre = $("#textAre").val().toUpperCase(); // searching regardless of upper nor lower
+
+  $(function(){ //gs 1+1
+  $('#show').html('....loading...');
+  $.ajax({
+      type: "GET",
+      url: "https://lt3x1q5x56.execute-api.ap-northeast-1.amazonaws.com/default1/yyjtest",
+      success:function(data){
+        var aa = data.Items;
+        var output = "GS 1+1의 검색결과 ";
+        var count = 0;
+        $.each(aa,function(index, item){
+          if (item.item_name.includes(textAre) == true) {
+          var priceval;
+          priceval = parseInt(item.item_price);
+          priceval = Math.ceil(priceval/2);
+          output += "<tr><td>" + item.item_name + "</td>";
+          output += "<td>" + item.item_price + "</td>";
+          output += "<td>" + "하나당 가격: <br><br> " + priceval + "</td>";
+          output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+          count = count + 1;
+}
+        })
+        if (count == 0 ){
+          output += "검색결과가 없습니다";
+        }
+
+        $('#show').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+      }
+      })
+})
+
+$(function(){ //gs 2+1
+$('#show1').html('....loading...');
+
+$.ajax({
+    type: "GET",
+    url: "https://wbzylo2lq3.execute-api.ap-northeast-1.amazonaws.com/prod3/gstwotest",
+    success:function(data){
+      var aa = data.Items;
+      var output = "GS 2+1의 검색결과 ";
+      var count = 0;
+      $.each(aa,function(index, item){
+
+        if (item.item_name.includes(textAre) == true) {
+        var priceval;
+        priceval = parseInt(item.item_price);
+        priceval = priceval*2
+        priceval = Math.ceil(priceval/3);
+        output += "<tr><td>" + item.item_name + "</td>";
+        output += "<td>" + item.item_price + "</td>";
+        output += "<td>" + "하나당 가격: <br><br> " + priceval + "</td>";
+        output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+        count = count +1;
+}
+      })
+      if (count == 0 ){
+        output += "검색결과가 없습니다";
+      }
+      $('#show1').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+    }
+    })
+})
+
+$(function(){ //gs덤
+$('#show2').html('....loading...');
+
+$.ajax({
+    type: "GET",
+    url: "https://y2mkd3ojae.execute-api.ap-northeast-1.amazonaws.com/prod2/gsdumtest",
+    success:function(data){
+      var aa = data.Items;
+      var output = "GS 덤의 검색결과 ";
+      var count = 0;
+      $.each(aa,function(index, item){
+
+        if (item.item_name.includes(textAre) == true) {
+        output += "<tr><td>" + item.item_name + "</td>";
+        output += "<td>" + item.item_price + "</td>";
+        output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td>";
+        output += "<td>" + "덤 상품 이름:<br><br>" + item.item_dum_name + "</td>";
+        output += "<td>" + "<img src='" + item.item_dum_img + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+        count = count + 1;
+}
+      })
+      if (count == 0 ){
+        output += "검색결과가 없습니다";
+      }
+
+      $('#show2').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+    }
+    })
+})
+
+  $(function(){ //cu 1+1
+  $('#show3').html('....loading...');
+
+  $.ajax({
+      type: "GET",
+      url: "https://4my8ss04o4.execute-api.ap-northeast-1.amazonaws.com/prod6/cuone",
+      success:function(data){
+        var aa = data.Items;
+        var output = "CU 1+1의 검색결과 ";
+        var count = 0;
+        $.each(aa,function(index, item){
+
+          if (item.item_name.includes(textAre) == true) {
+          var priceval;
+          priceval = parseInt(item.item_price);
+          priceval = Math.ceil(priceval/2);
+          output += "<tr><td>" + item.item_name + "</td>";
+          output += "<td>" + item.item_price + "</td>";
+          output += "<td>" + "하나당 가격: <br><br> " + priceval + "</td>";
+          output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+          count = count +1;
+}
+        })
+        if (count == 0 ){
+          output += "검색결과가 없습니다";
+        }
+
+        $('#show3').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+      }
+      })
+})
+  $(function(){ //cu 2+1
+  $('#show4').html('....loading...');
+
+  $.ajax({
+      type: "GET",
+      url: "https://ida8puztg1.execute-api.ap-northeast-1.amazonaws.com/prod5/cutwo",
+      success:function(data){
+        var aa = data.Items;
+        var output = "CU 2+1의 검색결과 ";
+        var count =0;
+        $.each(aa,function(index, item){
+
+          if (item.item_name.includes(textAre) == true) {
+            count = count + 1;
+          var priceval;
+        priceval = parseInt(item.item_price);
+        priceval = priceval*2
+          priceval = Math.ceil(priceval/3);
+          output += "<tr><td>" + item.item_name + "</td>";
+          output += "<td>" + item.item_price + "</td>";
+          output += "<td>" + "하나당 가격: <br><br> " + priceval + "</td>";
+          output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+}
+        })
+
+        if (count == 0 ){
+          output += "검색결과가 없습니다";
+        }
+        $('#show4').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+      }
+      })
+})
+
+
+$(function(){//세븐 1+1
+$('#show5').html('....loading...');
+
+$.ajax({
+  type: "GET",
+  url: "https://urtkj7fq3g.execute-api.ap-northeast-1.amazonaws.com/prod3/sevenone",
+  success:function(data){
+    var aa = data.Items;
+    var output = "세븐일레븐 1+1의 검색결과 ";
+    var count = 0;
+    $.each(aa,function(index, item){
+
+        if (item.item_name.includes(textAre) == true) {
+          var priceval;
+          priceval = parseInt(item.item_price);
+          priceval = Math.ceil(priceval/2);
+      output += "<tr><td>" + item.item_name + "</td>";
+      output += "<td>" + item.item_price + "</td>";
+      output += "<td>" + "하나당 가격: <br><br> " + priceval + "</td>";
+      output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+      count = count + 1;
+}
+    })
+    if (count == 0 ){
+      output += "검색결과가 없습니다";
+    }
+    $('#show5').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+  }
+  })
+})
+
+$(function(){ //세븐 2+1
+$('#show6').html('....loading...');
+
+$.ajax({
+    type: "GET",
+    url: "https://9d4147vo74.execute-api.ap-northeast-1.amazonaws.com/prod4/seventwo",
+    success:function(data){
+      var aa = data.Items;
+      var output = "세븐일레븐 2+1의 검색결과 ";
+      var count = 0;
+      $.each(aa,function(index, item){
+
+        if (item.item_name.includes(textAre) == true) {
+        var priceval;
+        priceval = parseInt(item.item_price);
+        priceval = priceval*2
+        priceval = Math.ceil(priceval/3);
+        output += "<tr><td>" + item.item_name + "</td>";
+        output += "<td>" + item.item_price + "</td>";
+        output += "<td>" + "하나당 가격: <br><br> " + priceval + "</td>";
+        output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+        count = count + 1;
+}
+      })
+      if (count == 0 ){
+        output += "검색결과가 없습니다";
+      }
+      $('#show6').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+    }
+    })
+})
+
+$(function(){ //세븐 덤
+$('#show7').html('....loading...');
+
+$.ajax({
+    type: "GET",
+    url: "https://xz703gnds8.execute-api.ap-northeast-1.amazonaws.com/prod7/sevendum",
+    success:function(data){
+      var aa = data.Items;
+      var output = "세븐일레븐 덤의 검색결과 ";
+      var count = 0;
+      $.each(aa,function(index, item){
+        if (item.item_name.includes(textAre) == true) {
+        output += "<tr><td>" + item.item_name + "</td>";
+        output += "<td>" + item.item_price + "</td>";
+        output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td>";
+        output += "<td>" + "덤 상품 이름:<br><br>" + item.item_dum_name + "</td>";
+        output += "<td>" + "<img src='" + item.item_dum_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+        count = count + 1;
+}})
+    if (count == 0 ){
+      output += "검색결과가 없습니다";
+    }
+
+      $('#show7').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+    }
+    })
+})
+
+});
+      </script>

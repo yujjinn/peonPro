@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+
+  <title>편프로 - 편의점 가격비교웹</title>
+  <style type="text/css">
+        var value=0;
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+#wrap{
+	width:100%;
+}
+
+#tabs{
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tabs li{
+  float: left;
+  margin: 0 5% 0 0;
+}
+
+#tabs a{
+  position: relative;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);
+  padding: 1% 52%;
+  float: left;
+  text-decoration: none;
+  color: #444;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+  border-radius: 5px 0 0 0;
+  box-shadow: 0 2px 2px rgba(0,0,0,.4);
+}
+
+#tabs a:hover,
+#tabs a:hover::after,
+#tabs a:focus,
+#tabs a:focus::after{
+  background: #fff;
+}
+
+#tabs a:focus{
+  outline: 0;
+}
+
+#tabs a::after{
+  content:'';
+  position:absolute;
+  z-index: 1;
+  top: 0;
+  right: -1%;
+  bottom: 0;
+  width: 15%;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);
+  box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+  transform: skew(10deg);
+  border-radius: 0 5px 0 0;
+}
+
+#tabs #current a,
+#tabs #current a::after{
+  background: #fff;
+  z-index: 3;
+}
+
+#content
+{
+    background: #fff;
+    padding: 2em;
+    height: 200px;
+    position: relative;
+    z-index: 2;
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
+}
+#container {width: 960px; margin: 0 auto;}
+        #container #input-form {text-align: center;}
+        #user-table {margin: 0 auto; text-align: center;}
+        #input-form {margin-top: 10px; margin-bottom: 10px;}
+
+        #user-table {border-collapse: collapse;}
+        #user-table > thead > tr { background-color: #333; color:#fff; }
+        #user-table > thead > tr > th { padding: 8px; width: 150px; }
+        #user-table > tbody > tr > td { border-bottom: 1px solid gray; padding:8px; }
+</style>
+</head>
+
+<body>
+          <select name="편의점" id="conven">
+                  <option value="전체1" selected="selected">전체</option>
+                  <option value="gs">지에스</option>
+                  <option value="cu">CU</option>
+                  <option value="7-11">세븐일레븐</option>
+          </select>
+
+          <select name="프로모션" id="promotion">
+                  <option value="전체2" selected="selected">전체</option>
+                  <option value="1+1">1+1</option>
+                  <option value="2+1">2+1</option>
+                  <option value="덤">덤증정</option>
+          </select>
+
+          <input type="button" value="검색" onclick="myFunction()"/>
+          <input type="button" value="되돌아가기" onclick="location.href='main.html';"/>
+
+        </form>
+</body>
+<script type="text/javascript">
+    var target1 = document.getElementById("conven");
+    var target2 = document.getElementById("promotion");
+       function myFunction() {
+
+         if (target1.options[target1.selectedIndex].value == 'gs' ) {
+            if (target2.options[target2.selectedIndex].value == '1+1') {
+              location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/as.html";
+            }
+           if (target2.options[target2.selectedIndex].value == '2+1') {
+             location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/gstwo.html";
+          }
+           if (target2.options[target2.selectedIndex].value == '덤') {
+             location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/gsdum.html";
+          }
+         }
+         if (target1.options[target1.selectedIndex].value == 'cu' ) {
+            if (target2.options[target2.selectedIndex].value == '1+1') {
+              location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/cuone.html";
+            }
+           if (target2.options[target2.selectedIndex].value == '2+1') {
+             location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/cutwo.html";
+          }
+           if (target2.options[target2.selectedIndex].value == '덤') {
+            alert("CU는 덤이 없습니다.");
+          }
+         }
+         if (target1.options[target1.selectedIndex].value == '7-11' ) {
+            if (target2.options[target2.selectedIndex].value == '1+1') {
+              location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/sevenone.html";
+            }
+           if (target2.options[target2.selectedIndex].value == '2+1') {
+             location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/seventwo.html";
+          }
+           if (target2.options[target2.selectedIndex].value == '덤') {
+            location.href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/sevendum.html";
+          }
+         }
+       }
+</script>
+</html>

@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset = "utf-8">
+    <title>CU 2+1 상품목록</title>
+    <style type = "text/css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#bbb;}
+.tg td{text-align: center; font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#bbb;color:#594F4F;background-color:#E0FFEB;}
+.tg th{ text-align: center; font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#bbb;color:#493F3F;background-color:#9DE0AD;}
+.tg .tg-yw4l{vertical-align:top}
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}</style>
+
+  </head>
+
+
+  <body>
+    <a href="http://yyjtest.s3-website-ap-northeast-1.amazonaws.com/category.html"><img src="back.png" width="50" height="50"/></a>
+    <div id=show></div>
+  </body>
+
+</html>
+
+    <script>
+
+    $(function(){
+  $('#show').html('....loading...');
+
+  $.ajax({
+      type: "GET",
+      url: "https://ida8puztg1.execute-api.ap-northeast-1.amazonaws.com/prod5/cutwo",
+      success:function(data){
+        var aa = data.Items;
+        var output = "CU 2+1 \" ";
+        $.each(aa,function(index, item){
+          output += "<tr><td>" + item.item_name + "</td>";
+          output += "<td>" + item.item_price + "</td>";
+          output += "<td>" + "<img src='" + item.item_url + "' style='max-width: 100%; height: auto;'>" + "</td></tr>";
+        })
+        $('#show').html(JSON.stringify("<table class='tg'>"+output+"</table>"));
+      }
+      })
+})
+      </script>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/normalize.css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+
+  <title>편프로 - 편의점 가격비교웹</title>
+  <style type="text/css">
+        var value=0;
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+#wrap{
+	width:100%;
+}
+
+#tabs{
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tabs li{
+  float: left;
+  margin: 0 5% 0 0;
+}
+
+#tabs a{
+  position: relative;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);
+  padding: 1% 52%;
+  float: left;
+  text-decoration: none;
+  color: #444;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+  border-radius: 5px 0 0 0;
+  box-shadow: 0 2px 2px rgba(0,0,0,.4);
+}
+
+#tabs a:hover,
+#tabs a:hover::after,
+#tabs a:focus,
+#tabs a:focus::after{
+  background: #fff;
+}
+
+#tabs a:focus{
+  outline: 0;
+}
+
+#tabs a::after{
+  content:'';
+  position:absolute;
+  z-index: 1;
+  top: 0;
+  right: -1%;
+  bottom: 0;
+  width: 15%;
+  background: #ddd;
+  background-image: linear-gradient(to bottom, #fff, #ddd);
+  box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+  transform: skew(10deg);
+  border-radius: 0 5px 0 0;
+}
+
+#tabs #current a,
+#tabs #current a::after{
+  background: #fff;
+  z-index: 3;
+}
+
+#content
+{
+    background: #fff;
+    padding: 2em;
+    height: 200px;
+    position: relative;
+    z-index: 2;
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
+}
+#container {width: 960px; margin: 0 auto;}
+        #container #input-form {text-align: center;}
+        #user-table {margin: 0 auto; text-align: center;}
+        #input-form {margin-top: 10px; margin-bottom: 10px;}
+
+        #user-table {border-collapse: collapse;}
+        #user-table > thead > tr { background-color: #333; color:#fff; }
+        #user-table > thead > tr > th { padding: 8px; width: 150px; }
+        #user-table > tbody > tr > td { border-bottom: 1px solid gray; padding:8px; }
+</style>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#content div").hide(); // Initially hide all content
+    $("#tabs li:first").attr("id","current"); // Activate first tab
+    $("#content div:first").fadeIn(); // Show first tab content
+
+    $('#tabs a').click(function(e) {
+        e.preventDefault();
+        if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+         return
+        }
+        else{
+        $("#content div").hide(); //Hide all content
+        $("#tabs li").attr("id",""); //Reset id's
+        $(this).parent().attr("id","current"); // Activate this
+        $('#' + $(this).attr('name')).fadeIn(); // Show content for current tab
+        }
+    });
+});
+</script>
+
+</head>
+<body>
+
+
+
+
+<div id="wrap">
+    <ul id="tabs">
+        <li><a href="#" name="tab1">초기화면</a></li>
+        <li><a href="#" name="tab2" onclick="location.href='category.html';">카테고리</a></li>
+        <li><a href="#" name="tab3">이벤트</a></li>
+        <li><a href="#" name="tab4">내정보</a></li>
+    </ul>
+
+    <div id="content">
+        <div id="tab1" align=center>
+
+          <fieldset>
+            <strong> '편프로 - 편의점 가격비교 웹'</strong><br>
+          </fieldset>
+
+          <script>
+          function goPage(){
+            location.href="test.html";
+           }
+          </script>
+          <a href="javascript:goPage()">키워드 검색</a>
+
+                <h1><a href="1.html">돌아가기<br></a></h1>
+              </div>
+
+
+        <div id="tab3">
+          <img src="3.png" width="70%"><br>
+          <a href="http://gs25.gsretail.com/gscvs/ko/customer-engagement/event/current-events" target="_blank" title="html5 specification"><img src="1.png" width="100%"></a>
+          <a href="http://cu.bgfretail.com/event/plus.do?category=event&depth2=1" target="_blank" title="html5 specification"><img src="2.png" width="100%"></a></div>
+        <div id="tab4" align=center><img src="profile.png" width="30%">
+        <br><strong>"윤영주" 회원님</strong><br>
+        <from action="" method="get">
+          <fieldset>
+            <legend><br>통신사 할인</legend>
+            KT<input type="checkbox" value="KT" name="check" checked="checked">
+            SKT<input type="checkbox" value="SKT" name="check">
+            LG U+<input type="checkbox" value="LG U+" name="check">
+            <br><img src="바코드.jpg" width=100%>
+          </fieldset>
+        </form>
+            <br><br><strong> 오늘의 추천 상품입니다.</strong>
+            <br><img src="딸기-2.png" width="100%">
+      </div>
+    </div>
+</div>
+</body>
+</html>
